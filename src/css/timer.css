@@ -43,6 +43,12 @@ button:hover {
   background-color: #6c8cff;
 }
 
+button:disabled {
+  background-color: #cfcfcf;
+  color: #989898;
+  cursor: not-allowed;
+}
+
 .timer {
   display: flex;
   align-items: flex-start;
