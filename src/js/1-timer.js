@@ -12,7 +12,11 @@ const options = {
       const timeNow = Date.now();
       
       if (selectedDate <= timeNow) {
-          window.alert("Please choose a date in the future");
+          //   window.alert("Please choose a date in the future");
+          iziToast.warning({
+              title: 'Warning',
+              message: 'Please choose a date in the future',
+          });
           startBtn.disabled = true;
       } else {
           userSelectedDate = selectedDate;
@@ -25,37 +29,63 @@ const options = {
 flatpickr("#datetime-picker", options);
 
 let userSelectedDate = null;
+let timerId = null;
 
 
 const startBtn = document.querySelector("button[data-start]");
 const input = document.querySelector("#datetime-picker");
+const daysElement = document.querySelector("span[data-days]");
+const hoursElement = document.querySelector("span[data-hours]");
+const minutesElement = document.querySelector("span[data-minutes]");
+const secondsElement = document.querySelector("span[data-seconds]");
+
 startBtn.disabled = true;
 input.disabled = false;
 
-const timer = document.querySelector(".timer");
-
-
 
 startBtn.addEventListener("click", () => {
-     if (userSelectedDate !== null) {
-
-        setInterval(() => {
+    if (!userSelectedDate) {
+        return;
+    }
+    
+    timerId = setInterval(() => {
             let userSelectedDateMs = userSelectedDate.getTime();
             const userDeltaTime = userSelectedDateMs - Date.now();
 
             console.log(convertMs(userDeltaTime));
-            // const timeLeft = convertMs(userDeltaTime);
-            
-        }, 1000);
         
+            if (userDeltaTime <= 0) {
+                clearInterval(timerId);
+                timerDisplay({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+                input.disabled = false;
+                startBtn.disabled = true;
+                return;
+        }
+
+        const time = convertMs(userDeltaTime);
+        timerDisplay(time);
+
         startBtn.disabled = true;
         input.disabled = true;
+            
+    }, 1000);
+    
 
-        }
 });
 
 
-// ---------------------------------------------------------
+function addLeadingZero(value) {
+    return String(value).padStart(2, '0');
+}
+
+
+function timerDisplay({ days, hours, minutes, seconds }) {
+    daysElement.textContent = addLeadingZero(days);
+    hoursElement.textContent = addLeadingZero(hours);
+    minutesElement.textContent = addLeadingZero(minutes);
+    secondsElement.textContent = addLeadingZero(seconds);
+}
+
 
 function convertMs(ms) {
   // Number of milliseconds per unit of time
@@ -76,10 +106,8 @@ function convertMs(ms) {
   return { days, hours, minutes, seconds };
 }
 
-// console.log(convertMs(2000)); // {days: 0, hours: 0, minutes: 0, seconds: 2}
-// console.log(convertMs(140000)); // {days: 0, hours: 0, minutes: 2, seconds: 20}
-// console.log(convertMs(24140000)); // {days: 0, hours: 6 minutes: 42, seconds: 20}
 
+import iziToast from "izitoast";
+import "izitoast/dist/css/iziToast.min.css";
 
-// -------------------------------------
 
