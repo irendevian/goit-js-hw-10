@@ -1,0 +1,82 @@
+.delay-input {
+  display: block;
+  border: 1px solid #808080;
+  border-radius: 4px;
+  width: 360px;
+  height: 40px;
+  padding: 8px 16px;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  margin-top: 8px;
+}
+
+.delay-input:hover {
+  border: 1px solid #000;
+}
+
+.delay-input:focus {
+  outline: none;
+  border: 1px solid #4e75ff;
+}
+
+.delay-label {
+  display: inline-block;
+  margin-top: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+}
+
+fieldset {
+  width: 360px;
+  height: 66px;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid #808080;
+  padding: 8px 16px;
+  margin-bottom: 24px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #2e2f42;
+  /* outline: none; */
+}
+
+fieldset:hover {
+  border: 1px solid #000;
+}
+
+.radio {
+  margin-left: 48px;
+  /* cursor: pointer; */
+}
+
+input[type='radio'] {
+  accent-color: #4e75ff;
+  cursor: pointer;
+}
+
+.btn-snackbar {
+  border-radius: 8px;
+  padding: 8px 16px;
+  width: 360px;
+  height: 40px;
+  background-color: #4e75ff;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-snackbar:hover {
+  background-color: #6c8cff;
+}
